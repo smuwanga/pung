@@ -65,8 +65,7 @@
             <div class="form-group">
 
                 <strong>Sex:</strong>
-
-                {!! Form::text('sex', null, array('placeholder' => 'Sex','class' => 'form-control','style'=>'height:100px')) !!}
+				{!! Form::select('sex', ['---','Female','Male'],array('placeholder' => 'Sex','class' => 'form-control')) !!}
 
             </div>
 
@@ -76,6 +75,14 @@
             <div class="form-group">
                 <strong>Date of Birth:</strong>
                 {!! Form::text('date_of_birth', null, array('placeholder' => 'Date of Birth','class' => 'form-control','style'=>'height:100px')) !!}
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="md-form">
+                <strong>Date of Birth:</strong>
+                {!! Form::date('date', (!empty($entry['date_submit']) ? $entry['date_submit']->format('M j, Y') : null), ['class' =>'date-time form-control datepicker ' . ($errors->has('date_submit') ? ' validate invalid' : '' )]) !!}
+    
             </div>
         </div>
 

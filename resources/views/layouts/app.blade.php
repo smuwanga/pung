@@ -23,18 +23,23 @@
                 </button>
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    PUNG
+                    PUNG - Patient Unique Number Generator
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ route('patients.index') }}">Patients</a></li>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
-                    <li><a href="{{ route('roles.index') }}">Roles</a></li>
-                   
-                </ul>
+                @if (Auth::guest())
+                    <!--a href="{{ url('/login') }}">Login</a -->
+                @else
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url('/home') }}">Home</a></li>
+                        <li><a href="{{ route('patients.index') }}">Patients</a></li>
+                        <li><a href="{{ route('facilities.index') }}">Facilities</a></li>
+                        <li><a href="{{ route('users.index') }}">Users</a></li>
+                        <li><a href="{{ route('roles.index') }}">Roles</a></li>
+                       
+                    </ul>
+                 @endif
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
