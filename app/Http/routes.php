@@ -42,4 +42,8 @@
 	Route::get('patients/{id}/edit',['as'=>'patients.edit','uses'=>'PatientController@edit','middleware' => ['permission:patient-edit']]);
 	Route::patch('patients/{id}',['as'=>'patients.update','uses'=>'PatientController@update','middleware' => ['permission:patient-edit']]);
 	Route::delete('patients/{id}',['as'=>'patients.destroy','uses'=>'PatientController@destroy','middleware' => ['permission:patient-delete']]);
+
+	Route::get('facilities',['as'=>'facilities.index','uses'=>'FacilityController@index','middleware' => ['permission:patient-list|patient-create|patient-edit|patient-delete']]);
+	Route::get('facilities/{id}',['as'=>'facilities.show','uses'=>'FacilityController@show']);
+	
 });
