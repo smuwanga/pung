@@ -54,7 +54,7 @@
 
                 <strong>Name:</strong>
 
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                {!! Form::text('name', null, array('placeholder' => 'Name of Patient','class' => 'form-control')) !!}
 
             </div>
 
@@ -65,7 +65,7 @@
             <div class="form-group">
 
                 <strong>Sex:</strong>
-				{!! Form::select('sex', ['---','Female','Male'],array('placeholder' => 'Sex','class' => 'form-control')) !!}
+				{!! Form::select('sex', ['---','Female','Male'],['placeholder' => 'Sex','class' => 'form-control']) !!}
 
             </div>
 
@@ -86,9 +86,48 @@
             </div>
         </div>
 
+         <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>District:</strong>
+				{!! Form::select('district', $districts,array('placeholder' => 'District','class' => 'form-control')) !!}
+
+            </div>
+
+        </div>
+
+		<div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+           
+                <strong>Sub County:</strong>
+				{!! Form::select('sub_county', $subCounties, array('placeholder' => 'Sub-County','class' => 'form-control')) !!}
+                
+            </div>
+
+        </div>
+		
+		<div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>Facility:</strong>
+				{!! Form::select('name', $subCountyFacilities,array('placeholder' => 'Facility','class' => 'form-control')) !!}
+
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Patient Unique Number:</strong>
+                {!! Form::text('patient_unique_number', null, array('placeholder' => 'Patient Unique Number','class' => 'form-control')) !!}
+
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary">Save Patient</button>
 
         </div>
 

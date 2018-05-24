@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Patient;
+use App\Facility;
+use Log;
 
 
 class PatientController extends Controller
@@ -29,10 +31,34 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patients.create');
+        $districts_array = json_decode(Facility::distinct()->get(['district'])) ;
+        
+       
+        $districts = array();
+        $subCounties = array();
+        $subCountyFacilities = array();
+        foreach ($districts_array as $key => $value) {
+            
+            array_push($districts, $value->district);
+           
+        }
+        
+        return view('patients.create',compact('districts','subCounties','subCountyFacilities'));
     }
 
+    public function getSubCounties($selected_district){
+        
+        $sql = "select DISTINCT sub_county from facilities where district like '$selected_district' order by sub_county asc";
+        $subcounties_array = \DB::connection('mysql')->select($sql);
 
+        $subcounties = array();
+        foreach ($subcounties_array as $key => $value) {
+            
+            array_push($subcounties, $value->sub_county);
+           
+        }
+        return $subcounties;
+    }
     /**
      * Store a newly created resource in storage.
      *
