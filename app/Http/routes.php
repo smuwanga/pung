@@ -47,8 +47,8 @@
 	Route::get('facilities/{id}',['as'=>'facilities.show','uses'=>'FacilityController@show']);
 
 	//ajax calls for dynamic fields for create patients
-	Route::get('/subcounties/get/{district}',['as'=>'roles.show','uses'=>'PatientController@getSubCounties']);
-
+	Route::get('/subcounties/get/{district}',['as'=>'patients.subcounties','uses'=>'PatientController@getSubCounties']);
+	Route::get('/subcountyFacilities/get/{district}/{selected_subcounty}',['as'=>'patients.facilities','uses'=>'PatientController@getSubCountyFacilities']);
 
 	
 });

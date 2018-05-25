@@ -37,6 +37,7 @@ class PatientController extends Controller
         $districts = array();
         $subCounties = array();
         $subCountyFacilities = array();
+        array_push($districts, "---");
         foreach ($districts_array as $key => $value) {
             
             array_push($districts, $value->district);
@@ -52,12 +53,28 @@ class PatientController extends Controller
         $subcounties_array = \DB::connection('mysql')->select($sql);
 
         $subcounties = array();
+        array_push($subcounties, "----");
         foreach ($subcounties_array as $key => $value) {
             
             array_push($subcounties, $value->sub_county);
            
         }
         return $subcounties;
+    }
+
+    public function getSubCountyFacilities($district,$selected_subcounty){
+        $sql = "select id, name,nhpi_code from facilities where district like '$district'  and  sub_county like '$selected_subcounty' order by name asc";
+        $facilities_array = \DB::connection('mysql')->select($sql);
+
+       
+        $facilities = array();
+        array_push($facilities, "----");
+        foreach ($facilities_array as $key => $value) {
+            $facilities["$value->nhpi_code"]=$value->name;
+            //array_push($facilities, $value->name);
+           
+        }
+        return $facilities;
     }
     /**
      * Store a newly created resource in storage.
@@ -71,6 +88,11 @@ class PatientController extends Controller
             'name' => 'required',
             'sex' => 'required',
             'date_of_birth' => 'required',
+            'art_number' => 'required',
+            'district' => 'required',
+            'sub_county' => 'required',
+            'health_facility' => 'required',
+            'patient_unique_number' => 'required',
         ]);
 
 

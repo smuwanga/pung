@@ -44,7 +44,7 @@
 
 	@endif
 
-	{!! Form::open(array('route' => 'patients.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'patients.store','method'=>'POST','id'=>'create_patient')) !!}
 
 	<div class="row">
 
@@ -73,8 +73,8 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Date of Birth:</strong>
-                {!! Form::text('date_of_birth', null, array('placeholder' => 'Date of Birth','class' => 'form-control','style'=>'height:100px')) !!}
+                <strong>ART No:</strong>
+                {!! Form::text('art_number', null, array('placeholder' => 'ART No','class' => 'form-control')) !!}
             </div>
         </div>
 
@@ -113,7 +113,7 @@
             <div class="form-group">
 
                 <strong>Facility:</strong>
-				{!! Form::select('name', $subCountyFacilities,array('placeholder' => 'Facility','class' => 'form-control')) !!}
+				{!! Form::select('health_facility', $subCountyFacilities,array('placeholder' => 'Facility','class' => 'form-control')) !!}
 
             </div>
 
@@ -121,7 +121,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Patient Unique Number:</strong>
-                {!! Form::text('patient_unique_number', null, array('placeholder' => 'Patient Unique Number','class' => 'form-control')) !!}
+                {!! Form::text('patient_unique_number', null, array('placeholder' => 'Patient Unique Number','class' => 'form-control', 'id'=>'pun')) !!}
 
             </div>
         </div>
