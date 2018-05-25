@@ -17,7 +17,7 @@ $(document).ready(function() {
 
                     $.each(data, function(key, value){
 
-                        $('select[name="sub_county"]').append('<option value="'+ key +'">' + value + '</option>');
+                        $('select[name="sub_county"]').append('<option value="'+ value +'">' + value + '</option>');
 
                     });
                 },
@@ -70,7 +70,7 @@ $(document).ready(function() {
     $('select[name="health_facility"]').on('change', function(e){
 
         var selected_facility_nhpi_code =  e.target.value;
-        var art_number = 198;
+        var art_number = document.getElementById("artnumberid").value;
         var pung_code=selected_facility_nhpi_code+""+art_number;
         if(selected_facility_nhpi_code) {
              

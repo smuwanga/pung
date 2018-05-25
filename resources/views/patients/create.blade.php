@@ -74,14 +74,14 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>ART No:</strong>
-                {!! Form::text('art_number', null, array('placeholder' => 'ART No','class' => 'form-control')) !!}
+                {!! Form::text('art_number', null, array('placeholder' => 'ART No','class' => 'form-control','id'=>'artnumberid')) !!}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="md-form">
                 <strong>Date of Birth:</strong>
-                {!! Form::date('date', (!empty($entry['date_submit']) ? $entry['date_submit']->format('M j, Y') : null), ['class' =>'date-time form-control datepicker ' . ($errors->has('date_submit') ? ' validate invalid' : '' )]) !!}
+                {!! Form::date('date_of_birth', (!empty($entry['date_submit']) ? $entry['date_submit']->format('M j, Y') : null), ['class' =>'date-time form-control datepicker ' . ($errors->has('date_submit') ? ' validate invalid' : '' )]) !!}
     
             </div>
         </div>

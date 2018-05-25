@@ -21,30 +21,31 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>No</th>
+
 			<th>Name</th>
+			<th>Patient Unique Number</th>
 			<th>Sex</th>
 			<th>Date of Birth</th>
-			<th width="280px">Action</th>
+
+			<th>Health Facility</th>
+			<th>District</th>
 		</tr>
 	@foreach ($patients as $key => $patient)
 	<tr>
 		<td>{{ ++$i }}</td>
-		<td>{{ $patient->name }}</td>
-		<td>{{ $patient->sex }}</td>
+
+		<td>{{ $patient->patient }}</td>
+		<td>{{ $patient->patient_unique_number }}</td>
+		<td>{{ $patient->gender }}</td>
 		<td>{{ $patient->date_of_birth }}</td>
-		<td>
-			<a class="btn btn-info" href="{{ route('patients.show',$patient->id) }}">Show</a>
-			@permission('patient-edit')
-			<a class="btn btn-primary" href="{{ route('patients.edit',$patient->id) }}">Edit</a>
-			@endpermission
-			@permission('patient-delete')
-			{!! Form::open(['method' => 'DELETE','route' => ['patients.destroy', $patient->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        	{!! Form::close() !!}
-        	@endpermission
-		</td>
+
+		<td>{{ $patient->facility }}</td>
+		<td>{{ $patient->district }}</td>
+		
+
+		
 	</tr>
 	@endforeach
 	</table>
-	{!! $patients->render() !!}
+	
 @endsection
