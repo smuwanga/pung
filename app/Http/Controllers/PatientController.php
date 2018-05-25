@@ -18,7 +18,18 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $patients = Patient::orderBy('id','DESC')->paginate(5);
+        $sql="select  p.name as patient,p.patient_unique_number,p.date_of_birth,f.district,f.sub_county,
+              f.name as facility,p.art_number,
+
+                CASE 
+                  WHEN p.sex = 1 THEN 'Female' 
+                  WHEN p.sex = 2 THEN 'Male'  
+                  ELSE 'x' END
+                as gender
+            from facilities f, patients p where p.health_facility = f.nhpi_code";
+
+        //$patients = Patient::orderBy('id','DESC')->paginate(5);
+        $patients = \DB::connection('mysql')->select($sql);
         return view('patients.index',compact('patients'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -84,6 +95,10 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info("...1..");
+        Log::info($request->all());
+        Log::info("...2..");
+
         $this->validate($request, [
             'name' => 'required',
             'sex' => 'required',
@@ -95,7 +110,7 @@ class PatientController extends Controller
             'patient_unique_number' => 'required',
         ]);
 
-
+        
         Patient::create($request->all());
 
 
