@@ -52,3 +52,12 @@
 
 	
 });
+
+Route::post('oauth/access_token', function() {
+ return Response::json(Authorizer::issueAccessToken());
+});
+
+
+Route::group(['prefix'=>'api', 'middleware' => ['oauth']], function() {
+	 Route::post('/register_patient',  'APIController@storePatient');
+});
