@@ -95,9 +95,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info("...1..");
-        Log::info($request->all());
-        Log::info("...2..");
+        
 
         $this->validate($request, [
             'name' => 'required',
@@ -125,8 +123,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
         $patient = Patient::find($id);
         return view('patients.show',compact('patient'));
     }
@@ -138,8 +135,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         $patient = Patient::find($id);
         return view('patients.edit',compact('patient'));
     }
@@ -152,8 +148,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $this->validate($request, [
             'name' => 'required',
             'sex' => 'required',
@@ -181,4 +176,5 @@ class PatientController extends Controller
         return redirect()->route('patients.index')
                         ->with('success','Patient deleted successfully');
     }
+
 }
